@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_spacing.dart';
-import '../../../../core/constants/app_text_styles.dart';
 
-/// Page 2: 2 states — similar to page 1 but different images and text
 class OnboardingPageTwo extends StatelessWidget {
   const OnboardingPageTwo({super.key, required this.state});
 
@@ -27,11 +26,9 @@ class _StateOne extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            color: const Color(0xFF2A1A3A),
-            child: const Center(
-              child: Icon(Icons.auto_stories_rounded, size: 120, color: AppColors.indicatorInactive),
-            ),
+          Image.asset(
+            'assets/images/intro_screen_2_1.png',
+            fit: BoxFit.cover,
           ),
           const _BottomGradient(),
         ],
@@ -49,27 +46,27 @@ class _StateTwo extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          Container(
-            color: const Color(0xFF3A1A2A),
-            child: const Center(
-              child: Icon(Icons.emoji_events_rounded, size: 120, color: AppColors.indicatorInactive),
-            ),
+          Image.asset(
+            'assets/images/intro_screen_2_1.png',
+            fit: BoxFit.cover,
           ),
           const _BottomGradient(),
           Positioned(
             left: AppSpacing.lg,
             right: AppSpacing.lg,
-            bottom: 160,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Track your\nprogress', style: AppTextStyles.displayLarge),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  'Real-time insights to keep you\nmotivated and on track.',
-                  style: AppTextStyles.bodyLarge,
+            top: 136,
+            child: SizedBox(
+              width: 304,
+              child: Text(
+                'MAKE MONEY\nMOVES ON\nTHE GO',
+                // TODO: Replace GoogleFonts.inter with Avenir Next once font file is added
+                style: GoogleFonts.inter(
+                  fontSize: 41.25,
+                  height: 36.71 / 41.25,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFFFFFFFF),
                 ),
-              ],
+              ),
             ),
           ),
         ],

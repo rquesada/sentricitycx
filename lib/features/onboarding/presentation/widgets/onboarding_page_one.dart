@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../../core/constants/app_colors.dart';
 import '../../../../core/constants/app_spacing.dart';
-import '../../../../core/constants/app_text_styles.dart';
 
-/// Page 1: 2 states
-/// State 1 → only image
-/// State 2 → different image + text
 class OnboardingPageOne extends StatelessWidget {
   const OnboardingPageOne({super.key, required this.state});
 
-  /// 0-indexed state (0 or 1)
   final int state;
 
   @override
@@ -30,14 +26,10 @@ class _StateOne extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // TODO: Replace with actual image asset
-          Container(
-            color: const Color(0xFF1A1A3A),
-            child: const Center(
-              child: Icon(Icons.image_rounded, size: 120, color: AppColors.indicatorInactive),
-            ),
+          Image.asset(
+            'assets/images/intro_screen_1_1.png',
+            fit: BoxFit.cover,
           ),
-          // Gradient overlay from bottom for buttons area
           const _BottomGradient(),
         ],
       ),
@@ -54,29 +46,27 @@ class _StateTwo extends StatelessWidget {
       child: Stack(
         fit: StackFit.expand,
         children: [
-          // TODO: Replace with actual image asset
-          Container(
-            color: const Color(0xFF1A2A3A),
-            child: const Center(
-              child: Icon(Icons.image_search_rounded, size: 120, color: AppColors.indicatorInactive),
-            ),
+          Image.asset(
+            'assets/images/intro_screen_1_2.png',
+            fit: BoxFit.cover,
           ),
           const _BottomGradient(),
-          // Text content
           Positioned(
             left: AppSpacing.lg,
             right: AppSpacing.lg,
-            bottom: 160,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Learn smarter,\nnot harder', style: AppTextStyles.displayLarge),
-                const SizedBox(height: AppSpacing.sm),
-                Text(
-                  'Personalized learning paths designed\nfor every student.',
-                  style: AppTextStyles.bodyLarge,
+            top: 136,
+            child: SizedBox(
+              width: 352,
+              child: Text(
+                'FINANCE \nYOUR FUTURE',
+                // TODO: Replace GoogleFonts.inter with Avenir Next once font file is added
+                style: GoogleFonts.inter(
+                  fontSize: 41.25,
+                  height: 36.71 / 41.25,
+                  fontWeight: FontWeight.w700,
+                  color: const Color(0xFFFFFFFF),
                 ),
-              ],
+              ),
             ),
           ),
         ],

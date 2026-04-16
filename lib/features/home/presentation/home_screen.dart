@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_spacing.dart';
-import '../../../core/constants/app_text_styles.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../core/routes/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
 
@@ -34,7 +32,6 @@ class _HomeScreenState extends State<HomeScreen>
       ),
     );
 
-    // Start bounce after a brief delay
     Future.delayed(const Duration(milliseconds: 200), () {
       if (mounted) _bounceController.forward();
     });
@@ -49,73 +46,73 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
+      backgroundColor: const Color(0xFF35347F),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.lg),
-          child: Column(
-            children: [
-              const Spacer(flex: 2),
-
-              // Animated logo
-              ScaleTransition(
-                scale: _bounceAnim,
-                child: _LogoWidget(),
+        child: Column(
+          children: [
+            // Centered logo with bounce
+            Expanded(
+              child: Center(
+                child: ScaleTransition(
+                  scale: _bounceAnim,
+                  child: const _StudentbankLogo(),
+                ),
               ),
+            ),
 
-              const Spacer(flex: 3),
-
-              // Buttons
-              PrimaryButton(
-                label: 'Create account',
-                onPressed: () => context.push(AppRoutes.accountType),
+            // Buttons
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  PrimaryButton(
+                    label: 'Create account',
+                    onPressed: () => context.push(AppRoutes.accountType),
+                  ),
+                  const SizedBox(height: 16),
+                  const PrimaryButton(
+                    label: 'Login',
+                    variant: ButtonVariant.secondary,
+                  ),
+                ],
               ),
-              const SizedBox(height: 16),
-              const PrimaryButton(
-                label: 'Login',
-                variant: ButtonVariant.secondary,
-              ),
-
-              const SizedBox(height: 32),
-            ],
-          ),
+            ),
+            const SizedBox(height: 32),
+          ],
         ),
       ),
     );
   }
 }
 
-class _LogoWidget extends StatelessWidget {
+class _StudentbankLogo extends StatelessWidget {
+  const _StudentbankLogo();
+
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        // TODO: Replace with actual logo asset
-        Container(
-          width: 120,
-          height: 120,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(28),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.primary.withValues(alpha: 0.4),
-                blurRadius: 32,
-                offset: const Offset(0, 12),
-              ),
-            ],
-          ),
-          child: const Icon(
-            Icons.school_rounded,
-            size: 64,
-            color: AppColors.white,
+        // TODO: Replace GoogleFonts.inter with Helvetica Neue once font file is added
+        Text(
+          'Studentbank',
+          style: GoogleFonts.inter(
+            fontSize: 42.45,
+            fontWeight: FontWeight.w700,
+            color: const Color(0xFFFFFEE9),
           ),
         ),
-        const SizedBox(height: AppSpacing.lg),
-        Text('SentricityCX', style: AppTextStyles.displayMedium),
-        const SizedBox(height: AppSpacing.xs),
-        Text('Your learning companion', style: AppTextStyles.bodyMedium),
+        const SizedBox(width: 2),
+        Padding(
+          padding: EdgeInsets.only(bottom: 42.45 * 0.20),
+          child: Container(
+            width: 6.24,
+            height: 6.24,
+            color: const Color(0xFFBC7BCF),
+          ),
+        ),
       ],
     );
   }
