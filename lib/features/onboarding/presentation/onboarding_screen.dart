@@ -110,21 +110,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
           // Bottom: action buttons
           Positioned(
-            left: AppSpacing.lg,
-            right: AppSpacing.lg,
-            bottom: AppSpacing.xxl,
+            left: 16,
+            right: 16,
+            bottom: 32,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                PrimaryButton(
-                  label: 'Create Account',
-                  variant: ButtonVariant.filled,
-                  // Visible but no action during onboarding
-                ),
-                const SizedBox(height: AppSpacing.sm),
-                PrimaryButton(
-                  label: 'Log In',
-                  variant: ButtonVariant.outlined,
+                const PrimaryButton(label: 'Create account'),
+                const SizedBox(height: 16),
+                const PrimaryButton(
+                  label: 'Login',
+                  variant: ButtonVariant.secondary,
                 ),
               ],
             ),

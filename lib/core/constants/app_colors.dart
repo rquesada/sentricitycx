@@ -5,6 +5,12 @@ abstract final class AppColors {
   static const Color primary = Color(0xFF4A6CF7);
   static const Color primaryDark = Color(0xFF2D50E0);
 
+  // Splash screens
+  static const Color splash1 = Color(0xFFB778DA);
+  static const Color splash2 = Color(0xFF667DEC);
+  static const Color splash3 = Color(0xFFFCC4F4);
+  static const Color splash4 = Color(0xFF35347F);
+
   // Neutrals
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);

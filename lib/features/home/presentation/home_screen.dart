@@ -67,18 +67,16 @@ class _HomeScreenState extends State<HomeScreen>
 
               // Buttons
               PrimaryButton(
-                label: 'Create Account',
-                variant: ButtonVariant.filled,
+                label: 'Create account',
                 onPressed: () => context.push(AppRoutes.accountType),
               ),
-              const SizedBox(height: AppSpacing.sm),
-              PrimaryButton(
-                label: 'Log In',
-                variant: ButtonVariant.outlined,
-                // No action
+              const SizedBox(height: 16),
+              const PrimaryButton(
+                label: 'Login',
+                variant: ButtonVariant.secondary,
               ),
 
-              const SizedBox(height: AppSpacing.xxl),
+              const SizedBox(height: 32),
             ],
           ),
         ),

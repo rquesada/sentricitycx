@@ -54,7 +54,7 @@ class StudentRegisterScreen extends StatelessWidget {
               const Spacer(),
               PrimaryButton(
                 label: 'Continue',
-                variant: ButtonVariant.filled,
+                variant: ButtonVariant.primary,
                 onPressed: () {
                   // TODO: submit registration
                 },

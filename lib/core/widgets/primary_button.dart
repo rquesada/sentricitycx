@@ -1,56 +1,65 @@
 import 'package:flutter/material.dart';
-import '../constants/app_colors.dart';
-import '../constants/app_text_styles.dart';
-import '../constants/app_spacing.dart';
 
-enum ButtonVariant { filled, outlined }
+enum ButtonVariant { primary, secondary }
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
     super.key,
     required this.label,
     this.onPressed,
-    this.variant = ButtonVariant.filled,
-    this.width = double.infinity,
+    this.variant = ButtonVariant.primary,
   });
 
   final String label;
   final VoidCallback? onPressed;
   final ButtonVariant variant;
-  final double width;
+
+  static const _bgPrimary = Color(0xFFFFFFFF);
+  static const _bgSecondary = Color(0xFF1D1C22);
+  static const _textPrimary = Color(0xFF1D1C22);
+  static const _textSecondary = Color(0xFFFFFFFF);
+  static const _shadow = BoxShadow(
+    color: Color(0x1A000000),
+    blurRadius: 18.6,
+    offset: Offset(0, 4),
+  );
 
   @override
   Widget build(BuildContext context) {
-    final isFilled = variant == ButtonVariant.filled;
+    final isPrimary = variant == ButtonVariant.primary;
+    final bg = isPrimary ? _bgPrimary : _bgSecondary;
+    final textColor = isPrimary ? _textPrimary : _textSecondary;
 
-    return SizedBox(
-      width: width,
-      height: 52,
-      child: isFilled
-          ? ElevatedButton(
-              onPressed: onPressed,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.buttonPrimary,
-                foregroundColor: AppColors.white,
-                disabledBackgroundColor: AppColors.buttonPrimary.withValues(alpha: 0.4),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSpacing.md),
+    return Container(
+      height: 54,
+      decoration: BoxDecoration(
+        color: bg,
+        borderRadius: BorderRadius.circular(50),
+        boxShadow: const [_shadow],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(50),
+          onTap: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: textColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
-                elevation: 0,
-              ),
-              child: Text(label, style: AppTextStyles.labelLarge),
-            )
-          : OutlinedButton(
-              onPressed: onPressed,
-              style: OutlinedButton.styleFrom(
-                foregroundColor: AppColors.white,
-                side: const BorderSide(color: AppColors.buttonBorder, width: 1.5),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSpacing.md),
-                ),
-              ),
-              child: Text(label, style: AppTextStyles.labelLarge),
+              ],
             ),
+          ),
+        ),
+      ),
     );
   }
 }

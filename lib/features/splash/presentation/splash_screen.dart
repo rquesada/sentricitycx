@@ -1,8 +1,38 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_text_styles.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../../core/routes/app_router.dart';
+import '../../../core/widgets/primary_button.dart';
+
+// TODO: Replace GoogleFonts.inter with Helvetica Neue once the font file is added to assets/fonts/
+class _SplashConfig {
+  final Color background;
+  final double fontSize;
+  final Color textColor;
+  final double dotSize;
+  final Color dotColor;
+
+  const _SplashConfig({
+    required this.background,
+    required this.fontSize,
+    required this.textColor,
+    required this.dotSize,
+    required this.dotColor,
+  });
+}
+
+const _configs = [
+  _SplashConfig(background: Color(0xFFB778DA), fontSize: 34.29, textColor: Color(0xFFFFFEE9), dotSize: 5.04, dotColor: Color(0xFFECADFF)),
+  _SplashConfig(background: Color(0xFF667DEC), fontSize: 34.29, textColor: Color(0xFFFFFEE9), dotSize: 5.04, dotColor: Color(0xFFBC7BCF)),
+  _SplashConfig(background: Color(0xFFFCC4F4), fontSize: 34.29, textColor: Color(0xFF700064),  dotSize: 5.04, dotColor: Color(0xFFBC7BCF)),
+  _SplashConfig(background: Color(0xFF35347F), fontSize: 27.05, textColor: Color(0xFFFFFEE9), dotSize: 3.98, dotColor: Color(0xFFBC7BCF)),
+  _SplashConfig(background: Color(0xFF35347F), fontSize: 42.45, textColor: Color(0xFFFFFEE9), dotSize: 6.24, dotColor: Color(0xFFBC7BCF)),
+];
+
+const _slideDuration = Duration(milliseconds: 300);
+const _slideHold = Duration(milliseconds: 600);
+const _lastSlideHold = Duration(milliseconds: 900);
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,98 +41,104 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _fadeAnim;
-  late final Animation<double> _scaleAnim;
+class _SplashScreenState extends State<SplashScreen> {
+  int _current = 0;
+  Timer? _timer;
 
   @override
   void initState() {
     super.initState();
+    _scheduleNext();
+  }
 
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 1400),
-    );
+  void _scheduleNext() {
+    _timer = Timer(_slideHold, _advance);
+  }
 
-    _fadeAnim = Tween<double>(begin: 0, end: 1).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeIn),
-      ),
-    );
+  void _advance() {
+    if (!mounted) return;
 
-    _scaleAnim = Tween<double>(begin: 0.7, end: 1.0).animate(
-      CurvedAnimation(
-        parent: _controller,
-        curve: const Interval(0.0, 0.6, curve: Curves.easeOutBack),
-      ),
-    );
-
-    _controller.forward();
-
-    // Navigate to onboarding after animation + brief hold
-    Future.delayed(const Duration(milliseconds: 2600), () {
-      if (mounted) context.go(AppRoutes.onboarding);
-    });
+    if (_current < _configs.length - 1) {
+      setState(() => _current++);
+      _scheduleNext();
+    } else {
+      _timer = Timer(_lastSlideHold, () {
+        if (mounted) context.go(AppRoutes.onboarding);
+      });
+    }
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    _timer?.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final config = _configs[_current];
+
     return Scaffold(
-      backgroundColor: AppColors.background,
-      body: Center(
-        child: AnimatedBuilder(
-          animation: _controller,
-          builder: (context, child) {
-            return FadeTransition(
-              opacity: _fadeAnim,
-              child: ScaleTransition(
-                scale: _scaleAnim,
-                child: child,
+      body: AnimatedContainer(
+        duration: _slideDuration,
+        curve: Curves.easeOut,
+        color: config.background,
+        child: SafeArea(
+          child: Column(
+            children: [
+              // Center logo
+              Expanded(
+                child: Center(
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      AnimatedDefaultTextStyle(
+                        duration: _slideDuration,
+                        curve: Curves.easeOut,
+                        style: GoogleFonts.inter(
+                          fontSize: config.fontSize,
+                          fontWeight: FontWeight.w700,
+                          color: config.textColor,
+                        ),
+                        child: const Text('Studentbank'),
+                      ),
+                      const SizedBox(width: 2),
+                      Padding(
+                        padding: EdgeInsets.only(bottom: config.fontSize * 0.20),
+                        child: AnimatedContainer(
+                          duration: _slideDuration,
+                          curve: Curves.easeOut,
+                          width: config.dotSize,
+                          height: config.dotSize,
+                          color: config.dotColor,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-            );
-          },
-          child: _LogoContent(),
+
+              // Bottom buttons
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const PrimaryButton(label: 'Create account'),
+                    const SizedBox(height: 16),
+                    const PrimaryButton(
+                      label: 'Login',
+                      variant: ButtonVariant.secondary,
+                    ),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 32),
+            ],
+          ),
         ),
       ),
-    );
-  }
-}
-
-class _LogoContent extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        // TODO: Replace with actual logo asset
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            color: AppColors.primary,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          child: const Icon(
-            Icons.school_rounded,
-            size: 56,
-            color: AppColors.white,
-          ),
-        ),
-        const SizedBox(height: 20),
-        Text(
-          'SentricityCX',
-          style: AppTextStyles.displayMedium,
-        ),
-      ],
     );
   }
 }
