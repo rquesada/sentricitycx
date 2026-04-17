@@ -21,7 +21,7 @@ const _steps = [
   [2, 2], // Page 3, state 3
 ];
 
-const _stepDuration = Duration(seconds: 3);
+const _stepDuration = Duration(seconds: 1);
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       if (nextPage != currentPage) {
         _pageController.animateToPage(
           nextPage,
-          duration: const Duration(milliseconds: 600),
+          duration: const Duration(milliseconds: 300),
           curve: Curves.easeInOut,
         );
       }

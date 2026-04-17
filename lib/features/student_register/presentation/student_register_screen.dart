@@ -92,6 +92,8 @@ class StudentRegisterScreen extends StatelessWidget {
                     backgroundColor: const Color(0x1A747AE8),
                     borderColor: const Color(0xFF747AE8),
                     shadowColor: const Color(0x267473B3),
+                    iconWidth: 51,
+                    iconHeight: 25,
                     onTap: () => context.push(AppRoutes.ecobankSteps),
                   ),
                 ),
@@ -107,6 +109,8 @@ class StudentRegisterScreen extends StatelessWidget {
                     backgroundColor: const Color(0xFFF5F6F7),
                     borderColor: const Color(0x45B5B4B4),
                     shadowColor: const Color(0x14000000),
+                    iconWidth: 46,
+                    iconHeight: 45,
                   ),
                 ),
 
@@ -127,6 +131,8 @@ class _BankButton extends StatelessWidget {
     required this.backgroundColor,
     required this.borderColor,
     required this.shadowColor,
+    required this.iconWidth,
+    required this.iconHeight,
     this.onTap,
   });
 
@@ -135,6 +141,8 @@ class _BankButton extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color shadowColor;
+  final double iconWidth;
+  final double iconHeight;
   final VoidCallback? onTap;
 
   @override
@@ -142,7 +150,7 @@ class _BankButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 345,
+        width: double.infinity,
         height: 70,
         decoration: BoxDecoration(
           color: backgroundColor,
@@ -176,8 +184,8 @@ class _BankButton extends StatelessWidget {
                   ),
                   child: Center(
                     child: SizedBox(
-                      width: 16.8,
-                      height: 21.6,
+                      width: iconWidth,
+                      height: iconHeight,
                       child: Image.asset(iconAsset, fit: BoxFit.contain),
                     ),
                   ),

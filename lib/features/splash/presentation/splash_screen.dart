@@ -43,7 +43,7 @@ class _SplashConfig {
 const _configs = [
   _SplashConfig(
     background: Color(0xFFB778DA),
-    fontSize: 34.29,
+    fontSize: 34,
     textColor: Color(0xFFFFFEE9),
     dotSize: 5.04,
     dotColor: Color(0xFFECADFF),
@@ -54,7 +54,7 @@ const _configs = [
   ),
   _SplashConfig(
     background: Color(0xFF667DEC),
-    fontSize: 34.29,
+    fontSize: 34,
     textColor: Color(0xFFFFFEE9),
     dotSize: 5.04,
     dotColor: Color(0xFFBC7BCF),
@@ -65,7 +65,7 @@ const _configs = [
   ),
   _SplashConfig(
     background: Color(0xFFFCC4F4),
-    fontSize: 34.29,
+    fontSize: 34,
     textColor: Color(0xFF700064),
     dotSize: 5.04,
     dotColor: Color(0xFFBC7BCF),
@@ -76,14 +76,14 @@ const _configs = [
   ),
   _SplashConfig(
     background: Color(0xFF35347F),
-    fontSize: 27.05,
+    fontSize: 27,
     textColor: Color(0xFFFFFEE9),
     dotSize: 3.98,
     dotColor: Color(0xFFBC7BCF),
   ),
   _SplashConfig(
     background: Color(0xFF35347F),
-    fontSize: 42.45,
+    fontSize: 42,
     textColor: Color(0xFFFFFEE9),
     dotSize: 6.24,
     dotColor: Color(0xFFBC7BCF),
@@ -180,10 +180,24 @@ class _SplashScreenState extends State<SplashScreen> {
                             style: TextStyle(
                               fontFamily: 'HelveticaNeue',
                               fontSize: config.fontSize,
-                              fontWeight: FontWeight.w700,
+                              height: 1.0,
+                              letterSpacing: config.fontSize * -0.02,
                               color: config.textColor,
                             ),
-                            child: const Text('Studentbank'),
+                            child: const Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: 'Student',
+                                    style: TextStyle(fontWeight: FontWeight.w700),
+                                  ),
+                                  TextSpan(
+                                    text: 'bank',
+                                    style: TextStyle(fontWeight: FontWeight.w400),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                           const SizedBox(width: 2),
                           Padding(

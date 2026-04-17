@@ -89,7 +89,6 @@ class AccountTypeScreen extends StatelessWidget {
                 backgroundColor: const Color(0x1A747AE8),
                 borderColor: const Color(0xFF747AE8),
                 shadowColor: const Color(0x267473B3),
-                rightPadding: 80,
                 onTap: () => context.push(AppRoutes.studentRegister),
               ),
             ),
@@ -105,7 +104,6 @@ class AccountTypeScreen extends StatelessWidget {
                 backgroundColor: const Color(0xFFF5F6F7),
                 borderColor: const Color(0x45B5B4B4),
                 shadowColor: const Color(0x14000000),
-                rightPadding: 77.5,
               ),
             ),
           ],
@@ -122,7 +120,6 @@ class _AccountButton extends StatelessWidget {
     required this.backgroundColor,
     required this.borderColor,
     required this.shadowColor,
-    required this.rightPadding,
     this.onTap,
   });
 
@@ -131,7 +128,6 @@ class _AccountButton extends StatelessWidget {
   final Color backgroundColor;
   final Color borderColor;
   final Color shadowColor;
-  final double rightPadding;
   final VoidCallback? onTap;
 
   @override
@@ -139,7 +135,7 @@ class _AccountButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 345,
+        width: double.infinity,
         height: 70,
         decoration: BoxDecoration(
           color: backgroundColor,
@@ -153,7 +149,7 @@ class _AccountButton extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.only(left: 15, top: 4, right: rightPadding, bottom: 5),
+        padding: const EdgeInsets.only(left: 15, top: 4, right: 15, bottom: 5),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
