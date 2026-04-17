@@ -54,11 +54,12 @@ class _StateTwo extends StatelessWidget {
           Positioned(
             left: AppSpacing.lg,
             right: AppSpacing.lg,
-            top: 136,
+            top: MediaQuery.of(context).padding.top + 59,
             child: SizedBox(
               width: 304,
               child: Text(
                 'MAKE MONEY\nMOVES ON\nTHE GO',
+                // TODO: Replace GoogleFonts.inter with Avenir Next once font file is added
                 // TODO: Replace GoogleFonts.inter with Avenir Next once font file is added
                 style: GoogleFonts.inter(
                   fontSize: 41.25,

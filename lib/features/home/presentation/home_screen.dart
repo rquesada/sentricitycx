@@ -26,11 +26,54 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
 
-          // Buttons at the bottom
+          // Content
           SafeArea(
             child: Column(
               children: [
-                const Spacer(),
+                // Logo — slightly below center
+                Expanded(
+                  child: Align(
+                    alignment: const Alignment(0, 0.3),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text.rich(
+                          TextSpan(
+                            style: const TextStyle(
+                              fontFamily: 'HelveticaNeue',
+                              fontSize: 42,
+                              height: 1.0,
+                              letterSpacing: 42 * -0.02,
+                              color: Color(0xFFFFFEE9),
+                            ),
+                            children: const [
+                              TextSpan(
+                                text: 'Student',
+                                style: TextStyle(fontWeight: FontWeight.w700),
+                              ),
+                              TextSpan(
+                                text: 'bank',
+                                style: TextStyle(fontWeight: FontWeight.w400),
+                              ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(width: 2),
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 42 * 0.20),
+                          child: Container(
+                            width: 6.24,
+                            height: 6.24,
+                            color: const Color(0xFFBC7BCF),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                // Buttons at the bottom
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Column(
@@ -44,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       const PrimaryButton(
                         label: 'Login',
-                        variant: ButtonVariant.secondary,
+                        variant: ButtonVariant.secondaryWhite,
                       ),
                     ],
                   ),

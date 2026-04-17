@@ -94,7 +94,6 @@ class StudentRegisterScreen extends StatelessWidget {
                     shadowColor: const Color(0x267473B3),
                     iconWidth: 51,
                     iconHeight: 25,
-                    onTap: () => context.push(AppRoutes.ecobankSteps),
                   ),
                 ),
 
@@ -111,6 +110,7 @@ class StudentRegisterScreen extends StatelessWidget {
                     shadowColor: const Color(0x14000000),
                     iconWidth: 46,
                     iconHeight: 45,
+                    onTap: () => context.push(AppRoutes.ecobankSteps),
                   ),
                 ),
 

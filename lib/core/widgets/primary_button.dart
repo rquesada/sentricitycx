@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-enum ButtonVariant { primary, secondary, ghost }
+enum ButtonVariant { primary, secondary, secondaryWhite, ghost }
 
 class PrimaryButton extends StatelessWidget {
   const PrimaryButton({
@@ -17,8 +17,10 @@ class PrimaryButton extends StatelessWidget {
 
   static const _bgPrimary = Color(0xFFFFFFFF);
   static const _bgSecondary = Color(0xFF1D1C22);
+  static const _bgSecondaryWhite = Color(0xFFFFFFFF);
   static const _textPrimary = Color(0xFF1D1C22);
   static const _textWhite = Color(0xFFFFFFFF);
+  static const _textBlue = Color(0xFF4D66F4);
   static const _shadow = BoxShadow(
     color: Color(0x1A000000),
     blurRadius: 18.6,
@@ -31,8 +33,16 @@ class PrimaryButton extends StatelessWidget {
       return _GlassButton(label: label, onPressed: onPressed);
     }
 
-    final bg = variant == ButtonVariant.primary ? _bgPrimary : _bgSecondary;
-    final textColor = variant == ButtonVariant.primary ? _textPrimary : _textWhite;
+    final bg = variant == ButtonVariant.secondaryWhite
+        ? _bgSecondaryWhite
+        : variant == ButtonVariant.primary
+            ? _bgPrimary
+            : _bgSecondary;
+    final textColor = variant == ButtonVariant.secondaryWhite
+        ? _textBlue
+        : variant == ButtonVariant.primary
+            ? _textPrimary
+            : _textWhite;
 
     return Container(
       height: 54,

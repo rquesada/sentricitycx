@@ -54,7 +54,7 @@ class _StateTwo extends StatelessWidget {
           Positioned(
             left: AppSpacing.lg,
             right: AppSpacing.lg,
-            top: 136,
+            top: MediaQuery.of(context).padding.top + 59,
             child: SizedBox(
               width: 352,
               child: Text(
