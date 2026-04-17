@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 import '../../../core/routes/app_router.dart';
 import '../../../core/widgets/primary_button.dart';
 
@@ -23,7 +22,6 @@ class _ShapeConfig {
   });
 }
 
-// TODO: Replace GoogleFonts.inter with Helvetica Neue once the font file is added to assets/fonts/
 class _SplashConfig {
   final Color background;
   final double fontSize;
@@ -179,7 +177,8 @@ class _SplashScreenState extends State<SplashScreen> {
                           AnimatedDefaultTextStyle(
                             duration: _slideDuration,
                             curve: Curves.easeOut,
-                            style: GoogleFonts.inter(
+                            style: TextStyle(
+                              fontFamily: 'HelveticaNeue',
                               fontSize: config.fontSize,
                               fontWeight: FontWeight.w700,
                               color: config.textColor,
