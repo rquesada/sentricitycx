@@ -4,6 +4,7 @@ import '../../features/onboarding/presentation/onboarding_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/account_type/presentation/account_type_screen.dart';
 import '../../features/student_register/presentation/student_register_screen.dart';
+import '../../features/ecobank_steps/presentation/ecobank_steps_screen.dart';
 
 abstract final class AppRoutes {
   static const String splash = '/';
@@ -11,6 +12,7 @@ abstract final class AppRoutes {
   static const String home = '/home';
   static const String accountType = '/account-type';
   static const String studentRegister = '/student-register';
+  static const String ecobankSteps = '/ecobank-steps';
 }
 
 final appRouter = GoRouter(
@@ -35,6 +37,10 @@ final appRouter = GoRouter(
     GoRoute(
       path: AppRoutes.studentRegister,
       builder: (context, state) => const StudentRegisterScreen(),
+    ),
+    GoRoute(
+      path: AppRoutes.ecobankSteps,
+      builder: (context, state) => const EcobankStepsScreen(),
     ),
   ],
 );
