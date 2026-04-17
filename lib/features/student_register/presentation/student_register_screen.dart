@@ -29,34 +29,7 @@ class StudentRegisterScreen extends StatelessWidget {
               fit: BoxFit.fitWidth,
             ),
 
-            // Credit card overlay
-            Positioned(
-              top: 161,
-              left: 0,
-              right: 0,
-              child: Center(
-                child: Container(
-                  width: 350,
-                  height: 212,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Color(0x26000000),
-                        blurRadius: 81.3,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                    image: const DecorationImage(
-                      image: AssetImage('assets/images/credit_card.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            // Content column
+// Content column
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

@@ -30,34 +30,6 @@ class EcobankStepsScreen extends StatelessWidget {
                   fit: BoxFit.fitWidth,
                 ),
                 Positioned(
-                  top: 322,
-                  left: 24,
-                  child: const Text.rich(
-                    TextSpan(
-                      style: TextStyle(
-                        fontFamily: 'AvenirLTStd',
-                        fontSize: 41.25,
-                        height: 0.89,
-                        fontWeight: FontWeight.w700,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: 'JUST 3 ',
-                          style: TextStyle(color: Color(0xFF7271AD)),
-                        ),
-                        TextSpan(
-                          text: 'STEPS',
-                          style: TextStyle(color: Color(0xFFBC7BCF)),
-                        ),
-                        TextSpan(
-                          text: '\nTO GO',
-                          style: TextStyle(color: Color(0xFF464498)),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
                   top: 411,
                   left: 24,
                   child: SizedBox(

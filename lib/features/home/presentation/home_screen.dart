@@ -33,7 +33,7 @@ class HomeScreen extends StatelessWidget {
                 // Logo — slightly below center
                 Expanded(
                   child: Align(
-                    alignment: const Alignment(0, 0.3),
+                    alignment: const Alignment(0, 0.45),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: CrossAxisAlignment.end,

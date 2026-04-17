@@ -20,7 +20,7 @@ class PageIndicator extends StatelessWidget {
   static const _inactiveWidth = 116.0;
   static const _height = 4.0;
   static const _radius = 2.0;
-  static const _gap = 6.0;
+  static const _gap = 2.0;
 
   @override
   Widget build(BuildContext context) {
