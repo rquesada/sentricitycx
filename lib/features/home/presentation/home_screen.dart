@@ -92,6 +92,18 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
+                const SizedBox(height: 12),
+                const Text(
+                  'Banking for African students',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Satoshi',
+                    fontSize: 14,
+                    height: 17.5 / 14,
+                    fontWeight: FontWeight.w500,
+                    color: Color(0xFFF4F6F8),
+                  ),
+                ),
                 const SizedBox(height: 32),
               ],
             ),
