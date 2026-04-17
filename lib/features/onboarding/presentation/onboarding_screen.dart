@@ -68,8 +68,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         );
       }
     } else {
-      // Stop on last step — user must press Create account to continue
       _timer?.cancel();
+      context.go(AppRoutes.home);
     }
   }
 
@@ -125,7 +125,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   variant: _currentPage == 2
                       ? ButtonVariant.ghost
                       : ButtonVariant.primary,
-                  onPressed: () => context.push(AppRoutes.accountType),
                 ),
                 const SizedBox(height: 16),
                 const PrimaryButton(
