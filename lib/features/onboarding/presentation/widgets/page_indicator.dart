@@ -17,7 +17,7 @@ class PageIndicator extends StatelessWidget {
   static const _activeColor = Color(0xFFFFFFFF);
   static const _inactiveColor = Color(0x54F6F6F6);
   static const _activeWidth = 120.0;
-  static const _inactiveWidth = 116.0;
+  static const _inactiveWidth = 120.0;
   static const _height = 4.0;
   static const _radius = 2.0;
   static const _gap = 2.0;
